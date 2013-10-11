@@ -1,6 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 def welcome_v1(request, name=None, age=None):
     if name:
@@ -24,9 +25,16 @@ def welcome_v1(request, name=None, age=None):
         # Here we pass it a generator (just as an example)
         # return HttpResponse(('<br>%d' % (i) for i in xrange(1,1000)))
 
+def site_context(request):
+    return {'company': 'My Company, Inc.',
+            'user': request.user,
+            'remote_ip': request.META['REMOTE_ADDR'],
+            'logo': 'http://localhost:8000/img/logo.png'
+    }
+
 def welcome(request, name=None, age=None):
     context = {'age' : age,
             'name': name,
     }
 
-    return render_to_response('welcome.html', context)
+    return render_to_response('welcome.html', context, context_instance=RequestContext(request, processors=[site_context]))
