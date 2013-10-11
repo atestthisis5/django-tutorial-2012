@@ -1,7 +1,8 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import render_to_response
 
-def welcome(request, name=None, age=None):
+def welcome_v1(request, name=None, age=None):
     if name:
         # The URL pattern matches only numbers, so we're not handling the 
         # ValueError that might happen if age isn't a numeric value.
@@ -22,3 +23,10 @@ def welcome(request, name=None, age=None):
         return HttpResponse('Hello!')
         # Here we pass it a generator (just as an example)
         # return HttpResponse(('<br>%d' % (i) for i in xrange(1,1000)))
+
+def welcome(request, name=None, age=None):
+    context = {'age' : age,
+            'name': name,
+    }
+
+    return render_to_response('welcome.html', context)
