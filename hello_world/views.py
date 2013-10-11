@@ -21,4 +21,4 @@ def welcome(request, name=None, age=None):
         # Here we pass it a string
         return HttpResponse('Hello!')
         # Here we pass it a generator (just as an example)
-        # return HttpResponse(('<br>%d % (i) for i in xrange(1,1000'))
+        # return HttpResponse(('<br>%d' % (i) for i in xrange(1,1000)))
