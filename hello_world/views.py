@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from datetime import datetime
+from hello_world import forms
 
 def welcome_v1(request, name=None, age=None):
     if name:
@@ -72,5 +73,12 @@ def session_ex(request):
          'visits': visits,
          'state': state, }
         )
+
+def forms_ex(request):
+    c = {
+        'form': forms.EventsForm(),
+    }
+
+    return render_to_response('forms_ex.html', c)
 
 
