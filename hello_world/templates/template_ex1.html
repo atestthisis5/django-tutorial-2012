@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Django Sample Template</title>
+</head>
+<body>
+  <h1>Django Sample Template</h1>
+
+  <p>The current month is {{ month }} and day is {{ day }}</p>
+  
+  <!-- Calling the now() method of the time object -->
+  <p>Oops! I meant that the current date is {{ time.now }}</p>
+  
+  <!-- Retrieving the Jones key of the names dictionary -->
+  <p>The person whose last name is Jones has a first name of {{ name.Jones }}</p>
+  
+  <!-- Retrieving index 0 of the people list -->
+  <p>The next person in line is {{ people.0 }}</p>
+
+  <!-- Demo of HTML autoescaping -->
+  <div>
+    {{ autoescapedemo }}
+  </div>
+
+  <!-- Template tags (for conditional statements and loops) -->
+  {% if time.minute|divisibleby:'2' %}
+  <p>The current minute {{ time.minute }} is even</p>
+  {% else %}
+  <p>The current minute {{ time.minute }} is odd</p>
+  {% endif %}
+
+  <h3>People in the Dictionary</h3>
+  <ul>
+  {% for last, first in names.items %}
+  <li>{{ last }}, {{ first }}</li>
+  {% endfor %}
+  </ul>
+
+  <!-- Using a more filters -->
+  <p>The current minute {{ time.minute }} is {{ time.minute|divisibleby:'2'|yesno:'even,odd' }}</p>
+  
+
+</body>
+</html>
