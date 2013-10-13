@@ -53,3 +53,24 @@ def welcome(request, name=None, age=None):
 
     return render_to_response('welcome.html', context, context_instance=RequestContext(request))
 
+def session_ex(request):
+    if request.session.get('counter', False) is False:
+        request.session['counter'] = 0
+        state = 'created'
+        visits = request.session['counter']
+    elif request.session['counter'] >= 10:
+        del request.session['counter']
+        state = 'deleted'
+        visits = 'NaN'
+    else:
+        request.session['counter']+=1
+        state = 'incremented'
+        visits = request.session['counter']
+
+    return render_to_response('session_ex.html',
+        {'pagetitle': 'Django Session Counter',
+         'visits': visits,
+         'state': state, }
+        )
+
+
