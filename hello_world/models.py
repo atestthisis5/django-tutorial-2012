@@ -11,6 +11,9 @@ class Events(models.Model):
     end_time = models.TimeField(help_text='End Time of Event')
     description = models.TextField(help_text='Description of Event')
 
+    def __str__(self):
+      return '%s' % (self.name,)
+
 class People(models.Model):
     fname = models.CharField(max_length=64, help_text='First Name')
     lname = models.CharField(max_length=64, help_text='Last Name')
