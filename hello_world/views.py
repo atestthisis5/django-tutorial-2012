@@ -75,10 +75,21 @@ def session_ex(request):
         )
 
 def forms_ex(request):
+    result = ''
+    if request.POST.has_key('name'):
+        form = forms.EventsForm(request.POST)
+        if form.is_valid():
+            m = form.save()
+            print m.name
+            form = forms.EventsForm()
+            result = 'Saved data with PK of %s' % (m.pk,)
+    else:
+        form = forms.EventsForm()    
+    
     c = {
-        'form': forms.EventsForm(),
+        'form': form,
+        'result': result,
     }
 
-    return render_to_response('forms_ex.html', c)
-
+    return render_to_response('forms_ex.html', c, context_instance=RequestContext(request))
 

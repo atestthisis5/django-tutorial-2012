@@ -7,8 +7,10 @@
 <body>
   <h1>Django Forms Example</h1>
 
+  <div>{{ result }}</div>
 
-  <form action="." method="post">
+  <form action="" method="post">
+    {% csrf_token %}
     <table>
       <tr>
         <td>Field</td>
