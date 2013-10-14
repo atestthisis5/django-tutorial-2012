@@ -6,15 +6,15 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'tutorial.views.home', name='home'),
-    # url(r'^tutorial/', include('tutorial.foo.urls')),
+    # url(r'^$', 'django-tutorial-2012.views.home', name='home'),
+    # url(r'^django-tutorial-2012/', include('django-tutorial-2012.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^hw/', include('tutorial.hello_world.urls')),
-    url(r'^$', 'tutorial.hello_world.views.welcome', name='hello_world-welcome'),
+    url(r'^hw/', include('django-tutorial-2012.hello_world.urls')),
+    url(r'^$', 'django-tutorial-2012.hello_world.views.welcome', name='hello_world-welcome'),
 
 )
