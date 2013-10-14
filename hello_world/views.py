@@ -93,3 +93,21 @@ def forms_ex(request):
 
     return render_to_response('forms_ex.html', c, context_instance=RequestContext(request))
 
+def forms_ex2(request):
+    result = ''
+    if request.POST.has_key('fname'):
+        form = forms.PeopleForm(request.POST)
+        if form.is_valid():
+            m = form.save()
+            print m.fname
+            form = forms.PeopleForm()
+            result = 'Saved data with PK of %s' % (m.pk,)
+    else:
+        form = forms.PeopleForm()
+
+    c = {
+        'form': form,
+        'result': result,
+    }
+
+    return render_to_response('forms_ex2.html', c, context_instance=RequestContext(request))
